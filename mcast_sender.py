@@ -48,8 +48,13 @@ sock.setsockopt(socket.IPPROTO_IP, socket.IP_MULTICAST_TTL, struct.pack('b', ttl
 try:
     i = 0
     while True:
-        mesg = "{}\n".format(i)
-        print mesg,
+        if i == 120:
+            mesg = "{}\n".format(121)
+        elif i == 153:
+            mesg = "{}\n".format(120)
+        else:
+            mesg = "{}\n".format(i)
+        #print mesg,
         sent = sock.sendto(mesg, group)
         #try: data, server = sock.recvfrom(16)
         #except socket.timeout: break
